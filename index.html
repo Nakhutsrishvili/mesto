@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="./images/logo/logo.svg" alt="Логотип" class="header__logo">
+    </header>
+    <main class="content">
+
+      <section class="profile">
+        <img src="./images/image.jpg" alt="Картинка" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button type="button" class="profile__edit-button"><img src="./images/EditButton.svg" alt="Рисунок" class="profile__edit-image"></button>
+          </div>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button type="button" class="profile__add-button"><img src="./images/Vector.png" alt="Рисунок" class="profile__add-image"></button>
+      </section>
+      <section class="elements">
+        <article class="element">
+          <img src="./images/MaskGroup.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Карачаево-Черкесия</p>
+            <button type="button" class="element__group-like element__group-like_active"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img src="./images/Altai.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Алтай</p>
+            <button type="button" class="element__group-like"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img src="./images/Dombay.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Домбай</p>
+            <button type="button" class="element__group-like"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img src="./images/Elbrus.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Гора Эльбрус</p>
+            <button type="button" class="element__group-like"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img src="./images/kareliya-3.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Карелия</p>
+            <button type="button" class="element__group-like"></button>
+          </div>
+        </article>
+        <article class="element">
+          <img src="./images/sahalin.png" alt="Картинка" class="element__image">
+          <div class="element__group">
+            <p class="element__group-title">Сахалин</p>
+            <button type="button" class="element__group-like"></button>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">&copy; 2023 Mesto Russia</footer>
+      <div class="popup">
+        <div class="popup__container">
+          <button type="button" class="popup__close"></button>
+          <form class="form" autocomplete="off">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <input class="form__input form__input-name" placeholder="Введите имя?" type="text">
+            <input class="form__input form__input-job" placeholder="Род занятия или увлечения?" type="text">
+            <button type="submit" class="form__submit-button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+<script src="./pages/index.js"></script>
+</body>
+
+</html>

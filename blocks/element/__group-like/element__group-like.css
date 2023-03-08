@@ -1,0 +1,20 @@
+.element__group-like{
+  display: block;
+  width: 22px;
+  height: 19px;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background-image: url(../../../images/Group.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  transition: opacity;
+}
+
+.element__group-like:hover{
+  opacity: 0.5;
+  transition: opacity 1s;
+}

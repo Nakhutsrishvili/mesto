@@ -1,0 +1,22 @@
+.profile__add-button{
+  background-color: #000000;
+  padding: 0;
+  width: 150px;
+  height: 50px;
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: opacity;
+}
+
+.profile__add-button:hover{
+  opacity: 0.5;
+  transition: opacity 1s;
+}
+
+/* 880 */
+@media screen and (max-width: 880px) {
+  .profile__add-button {
+    width: 100%;
+  }
+}

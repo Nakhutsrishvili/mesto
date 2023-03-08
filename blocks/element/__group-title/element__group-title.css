@@ -1,0 +1,14 @@
+.element__group-title{
+  color: #000000;
+  background-color: #FFFFFF;
+  margin: 0;
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 200px;
+}
