@@ -1,9 +1,9 @@
-[![LOGO](src../../images/logo/blackLogo.svg)]
+![LOGO](src../../images/logo/blackLogo.svg)
 # Проект (сайт): Место
 
 ### Одностраничный сайт. Здесь можно добавлять фотографии, удалять фотографии и ставить им лайки
 
-## В [Место](https://github.com/Nakhutsrishvili/mesto.git) проекте используется:
+## В проекте [Место](https://Nakhutsrishvili.github.io/mesto/) используется:
 - Вёрстка по Фигме
 - Файловая структура БЭМ - Nested
 - Подключение шрифтов с помощью  @font-face
