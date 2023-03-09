@@ -8,12 +8,12 @@
 }
 
 .profile__edit-button:hover{
-  opacity: 0.5;
+  opacity: 0.6;
   transition: opacity 1s;
 }
 
-/* 880 */
-@media screen and (max-width: 880px) {
+/* 991 */
+@media screen and (max-width: 991px) {
   .profile__edit-button {
     padding-top: 8px;
   }

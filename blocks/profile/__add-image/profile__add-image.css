@@ -3,8 +3,8 @@
   height: 22px;
 }
 
-/* 880 */
-@media screen and (max-width: 880px) {
+/* 991 */
+@media screen and (max-width: 991px) {
   .profile__add-image {
     width: 16px;
     height: 16px;
