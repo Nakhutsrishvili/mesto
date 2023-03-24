@@ -69,9 +69,9 @@ const card = evt.target.closest('.element');
 };
 
 //Константы для Попапа
-const popupEditProfile = document.querySelector ('.popup__edit-profile');
-const popupAddCards = document.querySelector ('.popup__add-cards');
-const popupImage = document.querySelector ('.popup__image');
+const popupEditProfile = document.querySelector ('.popup_edit-profile');
+const popupAddCards = document.querySelector ('.popup_add-cards');
+const popupImage = document.querySelector ('.popup_image');
 const closeButton = document.querySelectorAll ('.popup__close');
 const editButtonElement = document.querySelector ('.profile__edit-button');
 const profileAddButton = document.querySelector ('.profile__add-button');
