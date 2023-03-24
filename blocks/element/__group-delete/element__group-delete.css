@@ -1,0 +1,25 @@
+.element__group-delete{
+  display: block;
+  width: 18px;
+  height: 19.3px;
+  box-sizing: border-box;
+  margin: 0;
+  margin-left: 244px;
+  margin-top: 20px;
+  padding: 0;
+  border: none;
+  background-image: url(../../../images/Trash.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-color: transparent;
+  transition: opacity;
+  position: absolute;
+}
+
+.element__group-delete:hover{
+  opacity: 0.5;
+  transition: opacity 1s;
+}
+
+
