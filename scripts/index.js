@@ -35,6 +35,7 @@ function addCards (item) {
 const cloneElement = templateElement.querySelector('.element').cloneNode (true);
       cloneElement.querySelector('.element__image').src = item.link;
       cloneElement.querySelector('.element__group-title').textContent = item.name;
+      cloneElement.querySelector('.element__image').alt = item.name;
 //Функиця лайк
       cloneElement.querySelector('.element__group-like').addEventListener('click', function (evt) {
       evt.target.classList.toggle('element__group-like_active')});
@@ -52,6 +53,7 @@ return cloneElement;
 function openImage(item){
       popupPopupImage.src = item.link;
       popupImageCaption.textContent = item.name;
+      popupPopupImage.alt = item.name;
       showPopup(popupImage);
  }
 
@@ -72,7 +74,7 @@ const card = evt.target.closest('.element');
 const popupEditProfile = document.querySelector ('.popup_edit-profile');
 const popupAddCards = document.querySelector ('.popup_add-cards');
 const popupImage = document.querySelector ('.popup_image');
-const closeButton = document.querySelectorAll ('.popup__close');
+const closeButton = document.querySelectorAll ('.popup__closes');
 const editButtonElement = document.querySelector ('.profile__edit-button');
 const profileAddButton = document.querySelector ('.profile__add-button');
 const nameElement = document.querySelector ('.profile__name');
