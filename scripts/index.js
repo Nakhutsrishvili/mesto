@@ -74,7 +74,7 @@ const card = evt.target.closest('.element');
 const popupEditProfile = document.querySelector ('.popup_edit-profile');
 const popupAddCards = document.querySelector ('.popup_add-cards');
 const popupImage = document.querySelector ('.popup_image');
-const closeButton = document.querySelectorAll ('.popup__closes');
+const closeButtons = document.querySelectorAll ('.popup__close');
 const editButtonElement = document.querySelector ('.profile__edit-button');
 const profileAddButton = document.querySelector ('.profile__add-button');
 const nameElement = document.querySelector ('.profile__name');
@@ -123,7 +123,7 @@ const newCard = {name: formNameInput.value, link: formSrcInput.value};
       evt.target.reset();
 });
 
-      closeButton.forEach((element) => {
+      closeButtons.forEach((element) => {
 const popup = element.closest('.popup');
       element.addEventListener('click', function () {
       closePopup (popup);
