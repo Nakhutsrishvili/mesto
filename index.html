@@ -38,12 +38,14 @@
       <div class="popup popup_edit-profile">
         <div class="popup__container">
           <button aria-label="Закрыть" type="button" class="popup__close"></button>
-          <form class="form" autocomplete="off" name="profileForm" method="post">
+          <form novalidate class="form" autocomplete="off" name="profileForm" method="post">
             <h2 class="form__title">Редактировать профиль</h2>
-            <input class="form__input" id="form__profile-name" name="profileFormInputName" placeholder="Введите имя?"
-              type="text">
-            <input class="form__input" id="form__profile-job" name="profileFormInputJob"
+            <input minlength="2" maxlength="40" class="form__input" required id="name" name="profileFormInputName"
+              placeholder="Введите имя?" type="text">
+            <span id="name-error" class="form__error"></span>
+            <input minlength="2" maxlength="200" class="form__input" required id="job" name="profileFormInputJob"
               placeholder="Род занятия или увлечения?" type="text">
+            <span id="job-error" class="form__error"></span>
             <button aria-label="Сохранить" type="submit" class="form__submit-button">Сохранить</button>
           </form>
         </div>
@@ -52,13 +54,15 @@
       <div class="popup popup_add-cards">
         <div class="popup__container">
           <button aria-label="Закрыть" type="button" class="popup__close"></button>
-          <form class="form" id='form__mesto' autocomplete="off" name="addCardsForm" method="post">
+          <form novalidate class="form" id='form__mesto' autocomplete="off" name="addCardsForm" method="post">
             <h2 class="form__title ">Новое место</h2>
-            <input class="form__input" id="form__mesto-name" name="profileFormMestoName" placeholder="Название"
-              type="text">
-            <input class="form__input" id="form__mesto-src" name="profileFormMestoSrc"
-              placeholder="Ссылка на картинку" type='url'>
-            <button aria-label="Сохранить" type="submit" class="form__submit-button">Создать</button>
+            <input minlength="2" maxlength="30" class="form__input" required id="title" name="profileFormMestoName"
+              placeholder="Название" type="text">
+            <span id="title-error" class="form__error"></span>
+            <input class="form__input" required id="src" name="profileFormMestoSrc" placeholder="Ссылка на картинку"
+              type='url'>
+            <span id="src-error" class="form__error"></span>
+            <button aria-label="Создать" type="submit" class="form__submit-button">Создать</button>
           </form>
         </div>
       </div>
@@ -68,7 +72,7 @@
           <button aria-label="Закрыть" type="button" class="popup__close"></button>
           <img src="#" alt="#" class="popup__popup-image">
           <h2 class="popup__image-caption"></h2>
-          </div>
+        </div>
       </div>
 
       <template id="element">
@@ -85,7 +89,9 @@
 
     </main>
   </div>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
+
 </body>
 
 </html>

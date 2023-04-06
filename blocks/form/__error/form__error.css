@@ -1,0 +1,12 @@
+.form__error{
+  font-family: 'Inter','Arial', sans-serif;
+  font-style: normal;
+  font-size: 12px;
+  line-height: 15px;
+  margin: 5px 0 13px 0;
+  padding: 0;
+  box-sizing: border-box;
+  visibility: hidden;
+  color:#FF0000;
+  text-align: left;
+}
