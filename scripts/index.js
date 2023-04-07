@@ -2,48 +2,19 @@
 const elementsList = document.querySelector(".elements");
 const templateElement = document.getElementById("element").content;
 
-//Загружаем массив с карточками, у которого внутри объекты с свойствами.
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 // Добавляем карточку (клонируем и привязываем ссылки и текст)
 function addCards(item) {
   const cloneElement = templateElement.querySelector(".element").cloneNode(true);
   cloneElement.querySelector(".element__image").src = item.link;
   cloneElement.querySelector(".element__group-title").textContent = item.name;
-  cloneElement.querySelector(".element__image").alt = item.name;
-
-
+  const elementImage = cloneElement.querySelector(".element__image");
+  elementImage.alt = item.name;
+ 
 //Функиця лайк
   cloneElement.querySelector(".element__group-like").addEventListener("click", function (evt) {
       evt.target.classList.toggle("element__group-like_active");
     });
   cloneElement.querySelector(".element__group-delete").addEventListener("click", handleDelete);
-
 
 //Функция открытия картинки
   cloneElement.querySelector(".element__image").addEventListener("click", () => {
@@ -51,7 +22,6 @@ function addCards(item) {
     });
   return cloneElement;
 }
-
 
 //Функция открытия картинки
 function openImage(item) {
@@ -61,13 +31,11 @@ function openImage(item) {
   showPopup(popupImage);
 }
 
-
 //Перебираем массив и говорим,что нужно сделать с каждыи item каждого объекта массива
 initialCards.forEach((item) => {
   const cards = addCards(item);
   elementsList.append(cards);
 });
-
 
 //Удаление карточки
 const elementGroupDelete = document.querySelector(".element__group-delete");
@@ -93,12 +61,10 @@ const formSrcInput = document.getElementById("src");
 const popupPopupImage = document.querySelector(".popup__popup-image");
 const popupImageCaption = document.querySelector(".popup__image-caption");
 
-
 // Константы для Submit
 const documentForms = document.forms; // Нашел все формы
 const loginProfileForm = document.forms.profileForm;
 const loginAddCardsForm = document.forms.addCardsForm;
-
 
 //Константы для сброса Input и Button (из глобальной области видимости, т.к. они не доступны нам из Validates)
 const inputListProfileForm = loginProfileForm.querySelectorAll(".form__input");
@@ -110,7 +76,6 @@ const butonSubmitAddCardsForm = loginAddCardsForm.querySelector(
   ".form__submit-button"
 );
 
-
 // Попап для профиля
 function showPopup(popup) {
   popup.classList.add("popup_opened");
@@ -121,17 +86,17 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
   document.removeEventListener("keydown", closePopupEsc);
 }
+
 editButtonElement.addEventListener("click", () => {
   resetErrorForm(loginProfileForm); // при невалидных инпутах сбрасываем ошибки при закрытии попапа*/
+  profileNameInput.value = nameElement.textContent;
+  profileJobInput.value = jobElement.textContent;
   activateButton(                   // при не прохождении валидации инпутов делает неактивной кнопку
     inputListProfileForm,
     butonSubmitProfileForm,
     validationElement.inactiveButtonClass);
-  profileNameInput.value = nameElement.textContent;
-  profileJobInput.value = jobElement.textContent;
   showPopup(popupEditProfile);
 });
-
 
 // Сабмит для профайла
 loginProfileForm.addEventListener("submit", (evt) => {
@@ -140,7 +105,6 @@ loginProfileForm.addEventListener("submit", (evt) => {
   jobElement.textContent = profileJobInput.value;
   closePopup(popupEditProfile);
 });
-
 
 //  Сабмит для карточек + добавление карточки
 loginAddCardsForm.addEventListener("submit", (evt) => {
@@ -159,7 +123,6 @@ closeButtons.forEach((element) => {
   });
 });
 
-
 // Попап для добавления карточки
 profileAddButton.addEventListener("click", () => {
   loginAddCardsForm.reset();
@@ -172,14 +135,12 @@ profileAddButton.addEventListener("click", () => {
   showPopup(popupAddCards);
 });
 
-
 // Универсальная кнопка закрытия попапа при нажатии на Escape
 function closePopupEsc(evt) {
   if (evt.key === "Escape") {
     const popupOpened = document.querySelector(".popup_opened");
     closePopup(popupOpened);}
 }
-
 
 // Закрытие по Overlay
 popupEditProfile.addEventListener("click", (evt) => {
@@ -188,13 +149,11 @@ popupEditProfile.addEventListener("click", (evt) => {
   }
 });
 
-
 popupAddCards.addEventListener("click", (evt) => {
   if (evt.currentTarget === evt.target) {
     closePopup(popupAddCards);
   }
 });
-
 
 popupImage.addEventListener("click", (evt) => {
   if (evt.currentTarget === evt.target) {

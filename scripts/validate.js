@@ -8,10 +8,6 @@ const validationElement = {
   errorClass: "form__error_visible", //
 };
 
-
-const log = console.log;
-
-
 //Живой ввод инпута (живая валидация)
 function enableValidation(element) {
   const forms = Array.from(element.formSelector);
@@ -28,7 +24,6 @@ function enableValidation(element) {
   });
 }
 
-
 function setEventListener(
   inputList,
   formButton,
@@ -44,7 +39,6 @@ function setEventListener(
   });
 }
 
-
 function checkInputValidity(input, errorClass, inputErrorClass) {
   const currentInputError = document.querySelector(`#${input.id}-error`);
   if (input.validity.valid) {
@@ -54,20 +48,17 @@ function checkInputValidity(input, errorClass, inputErrorClass) {
   }
 }
 
-
 function hideInputError(input, currentInputError, errorClass, inputErrorClass) {
   input.classList.remove(inputErrorClass);
   currentInputError.textContent = "";
   currentInputError.classList.remove(errorClass);
 }
 
-
 function showInputError(input, currentInputError, errorClass, inputErrorClass) {
   input.classList.add(inputErrorClass);
   currentInputError.textContent = input.validationMessage;
   currentInputError.classList.add(errorClass);
 }
-
 
 function activateButton(inputList, formButton, inactiveButtonClass) {
   if (hasInvalidInput(inputList)) {
@@ -77,23 +68,19 @@ function activateButton(inputList, formButton, inactiveButtonClass) {
   }
 }
 
-
 function hasInvalidInput(inputList) {
   return Array.from(inputList).some((input) => !input.validity.valid);
 }
-
 
 function enableButton(formButton, inactiveButtonClass) {
   formButton.classList.remove(inactiveButtonClass);
   formButton.removeAttribute("disabled", false);
 }
 
-
 function disableButton(formButton, inactiveButtonClass) {
   formButton.classList.add(inactiveButtonClass);
   formButton.setAttribute("disabled", true);
 }
-
 
 // Функция сброса валидации
 function resetErrorForm(form) {
@@ -109,6 +96,5 @@ function resetErrorForm(form) {
     }
   });
 }
-
 
 enableValidation(validationElement);
