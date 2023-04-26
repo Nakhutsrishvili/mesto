@@ -1,26 +1,43 @@
-//Объявляем переменные для создания карточек
+import initialCards from "./Constants.js";
+import Card from "./Card.js";
+import FormValidator from "./Validate.js";
+
+// Константы общие
+const selectorTemplate = "#element";
 const elementsList = document.querySelector(".elements");
-const templateElement = document.getElementById("element").content;
+const popupEditProfile = document.querySelector(".popup_edit-profile");
+const popupAddCards = document.querySelector(".popup_add-cards");
+const popupImage = document.querySelector(".popup_image");
+const closeButtons = document.querySelectorAll(".popup__close");
+const editButtonElement = document.querySelector(".profile__edit-button");
+const profileAddButton = document.querySelector(".profile__add-button");
+const nameElement = document.querySelector(".profile__name");
+const jobElement = document.querySelector(".profile__about");
+const profileNameInput = document.getElementById("name");
+const profileJobInput = document.getElementById("job");
+const formNameInput = document.getElementById("title");
+const formSrcInput = document.getElementById("src");
+const popupPopupImage = document.querySelector(".popup__popup-image");
+const popupImageCaption = document.querySelector(".popup__image-caption");
+
+// Константы для Submit
+const loginProfileForm = document.forms.profileForm;
+const loginAddCardsForm = document.forms.addCardsForm;
+
+// Константы для валидации
+const validationElement = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__submit-button",
+  inactiveButtonClass: "form__submit-button_disabled", // неактивная кнопка
+  inputErrorClass: "form__input_type_error", // поддчеркивание красным
+  errorClass: "form__error_visible", //
+};
 
 // Добавляем карточку (клонируем и привязываем ссылки и текст)
-function addCards(item) {
-  const cloneElement = templateElement.querySelector(".element").cloneNode(true);
-  cloneElement.querySelector(".element__image").src = item.link;
-  cloneElement.querySelector(".element__group-title").textContent = item.name;
-  const elementImage = cloneElement.querySelector(".element__image");
-  elementImage.alt = item.name;
- 
-//Функиця лайк
-  cloneElement.querySelector(".element__group-like").addEventListener("click", function (evt) {
-      evt.target.classList.toggle("element__group-like_active");
-    });
-  cloneElement.querySelector(".element__group-delete").addEventListener("click", handleDelete);
-
-//Функция открытия картинки
-  cloneElement.querySelector(".element__image").addEventListener("click", () => {
-      openImage(item);
-    });
-  return cloneElement;
+function addNewCards(item) {
+  const cards = new Card (item, selectorTemplate, openImage);
+  const elementCard = cards.addCards();
+  return elementCard;
 }
 
 //Функция открытия картинки
@@ -33,8 +50,7 @@ function openImage(item) {
 
 //Перебираем массив и говорим,что нужно сделать с каждыи item каждого объекта массива
 initialCards.forEach((item) => {
-  const cards = addCards(item);
-  elementsList.append(cards);
+  elementsList.append(addNewCards(item));
 });
 
 //Удаление карточки
@@ -44,37 +60,15 @@ function handleDelete(evt) {
   card.remove();
 }
 
-//Константы для Попапа
-const popupEditProfile = document.querySelector(".popup_edit-profile");
-const popupAddCards = document.querySelector(".popup_add-cards");
-const popupImage = document.querySelector(".popup_image");
-const closeButtons = document.querySelectorAll(".popup__close");
-const editButtonElement = document.querySelector(".profile__edit-button");
-const profileAddButton = document.querySelector(".profile__add-button");
-const nameElement = document.querySelector(".profile__name");
-const jobElement = document.querySelector(".profile__about");
-const formElement = document.querySelector(".form");
-const profileNameInput = document.getElementById("name");
-const profileJobInput = document.getElementById("job");
-const formNameInput = document.getElementById("title");
-const formSrcInput = document.getElementById("src");
-const popupPopupImage = document.querySelector(".popup__popup-image");
-const popupImageCaption = document.querySelector(".popup__image-caption");
+//создаем экземпляр для формы профайла + запуск валидации формы
+const formProfileValidator = new FormValidator(validationElement, loginProfileForm);
+console.log(formProfileValidator)
+formProfileValidator.enableValidation()
 
-// Константы для Submit
-const documentForms = document.forms; // Нашел все формы
-const loginProfileForm = document.forms.profileForm;
-const loginAddCardsForm = document.forms.addCardsForm;
-
-//Константы для сброса Input и Button (из глобальной области видимости, т.к. они не доступны нам из Validates)
-const inputListProfileForm = loginProfileForm.querySelectorAll(".form__input");
-const inputListAddCardsForm = loginAddCardsForm.querySelectorAll(".form__input");
-const butonSubmitProfileForm = loginProfileForm.querySelector(
-  ".form__submit-button"
-);
-const butonSubmitAddCardsForm = loginAddCardsForm.querySelector(
-  ".form__submit-button"
-);
+//создаем экземпляр для формы добавления карточки + запуск валидации формы
+const formAddCardsValidator = new FormValidator(validationElement, loginAddCardsForm);
+console.log(formAddCardsValidator)
+formAddCardsValidator.enableValidation()
 
 // Попап для профиля
 function showPopup(popup) {
@@ -88,13 +82,9 @@ function closePopup(popup) {
 }
 
 editButtonElement.addEventListener("click", () => {
-  resetErrorForm(loginProfileForm); // при невалидных инпутах сбрасываем ошибки при закрытии попапа*/
+  formProfileValidator.resetErrorForm(); // при невалидных инпутах сбрасываем ошибки при закрытии попапа*/
   profileNameInput.value = nameElement.textContent;
   profileJobInput.value = jobElement.textContent;
-  activateButton(                   // при не прохождении валидации инпутов делает неактивной кнопку
-    inputListProfileForm,
-    butonSubmitProfileForm,
-    validationElement.inactiveButtonClass);
   showPopup(popupEditProfile);
 });
 
@@ -110,7 +100,7 @@ loginProfileForm.addEventListener("submit", (evt) => {
 loginAddCardsForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   const newCard = { name: formNameInput.value, link: formSrcInput.value };
-  elementsList.prepend(addCards(newCard));
+  elementsList.prepend(addNewCards(newCard));
   closePopup(popupAddCards);
   evt.target.reset();
 });
@@ -126,13 +116,8 @@ closeButtons.forEach((element) => {
 // Попап для добавления карточки
 profileAddButton.addEventListener("click", () => {
   loginAddCardsForm.reset();
-  resetErrorForm(loginAddCardsForm); //при невалидных инпутах сбрасываем ошибки
-  activateButton(                   // при не прохождении валидации инпутов делает неактивной кнопку
-    inputListAddCardsForm,
-    butonSubmitAddCardsForm,
-    validationElement.inactiveButtonClass
-  );
-  showPopup(popupAddCards);
+ formAddCardsValidator.resetErrorForm(); //при невалидных инпутах сбрасываем ошибки
+    showPopup(popupAddCards);
 });
 
 // Универсальная кнопка закрытия попапа при нажатии на Escape
