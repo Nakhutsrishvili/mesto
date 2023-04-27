@@ -1,6 +1,6 @@
-import initialCards from "./Constants.js";
+import initialCards from "./constants.js";
 import Card from "./Card.js";
-import FormValidator from "./Validate.js";
+import FormValidator from "./FormValidator.js";
 
 // Константы общие
 const selectorTemplate = "#element";
