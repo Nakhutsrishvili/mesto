@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+</head>
+
+<body class='body'>
+  <div class="page">
+    <header class="header">
+      <img src="<%=require('./images/logo/logo.svg')%>" alt="Логотип" class="header__logo">
+    </header>
+    <main class="content">
+
+      <div class="profile">
+        <img src="<%=require('./images/image.jpg')%>" alt="Картинка" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__container">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button aria-label="Редактировать" type="button" class="profile__edit-button"><img
+                src="<%=require('./images/EditButton.svg')%>" alt="Рисунок" class="profile__edit-image"></button>
+          </div>
+          <p class="profile__about">Исследователь океана</p>
+        </div>
+        <button aria-label="Добавить" type="button" class="profile__add-button"><img src="<%=require('./images/Vector.png')%>"
+            alt="Рисунок" class="profile__add-image"></button>
+      </div>
+
+      <section class="elements"></section>
+
+      <footer class="footer">
+        <p class="footer__text">&copy; 2023 Mesto Russia</p>
+      </footer>
+      <div class="popup popup_edit-profile">
+        <div class="popup__container">
+          <button aria-label="Закрыть" type="button" class="popup__close"></button>
+          <form novalidate class="form" autocomplete="off" name="profileForm" method="post">
+            <h2 class="form__title">Редактировать профиль</h2>
+            <input minlength="2" maxlength="40" class="form__input" required id="name" name="profileFormInputName"
+              placeholder="Введите имя?" type="text">
+            <span id="name-error" class="form__error"></span>
+            <input minlength="2" maxlength="200" class="form__input" required id="job" name="profileFormInputJob"
+              placeholder="Род занятия или увлечения?" type="text">
+            <span id="job-error" class="form__error"></span>
+            <button aria-label="Сохранить" type="submit" class="form__submit-button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_add-cards">
+        <div class="popup__container">
+          <button aria-label="Закрыть" type="button" class="popup__close"></button>
+          <form novalidate class="form" id='form__mesto' autocomplete="off" name="addCardsForm" method="post">
+            <h2 class="form__title ">Новое место</h2>
+            <input minlength="2" maxlength="30" class="form__input" required id="title" name="profileFormMestoName"
+              placeholder="Название" type="text">
+            <span id="title-error" class="form__error"></span>
+            <input class="form__input" required id="src" name="profileFormMestoSrc" placeholder="Ссылка на картинку"
+              type='url'>
+            <span id="src-error" class="form__error"></span>
+            <button aria-label="Создать" type="submit" class="form__submit-button">Создать</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_image">
+        <div class="popup__container-image">
+          <button aria-label="Закрыть" type="button" class="popup__close"></button>
+          <img src="#" alt="#" class="popup__popup-image">
+          <h2 class="popup__image-caption"></h2>
+        </div>
+      </div>
+
+      <template id="element">
+        <article class="element">
+          <button aria-label="Удалить" type="button" class="element__group-delete"></button>
+          <img src="#" alt="#" class="element__image">
+          <div class="element__group">
+            <h2 class="element__group-title"></h2>
+            <button aria-label="Лайкнуть" type="button" class="element__group-like"></button>
+          </div>
+        </article>
+      </template>
+
+
+    </main>
+  </div>
+  
+</body>
+
+</html>
