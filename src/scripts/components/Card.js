@@ -1,10 +1,10 @@
 export default class Card {
   constructor(item, selectorTemplate, openImage){
-this._item = item;
-this._link = item.link;
-this._name = item.name;
-this._selectorTemplate = selectorTemplate;
-this._openImage = openImage;
+    this._item = item;
+    this._link = item.link;
+    this._name = item.title;
+    this._selectorTemplate = selectorTemplate;
+    this._openImage = openImage;
   }
 
 _getTempalteClone(){
