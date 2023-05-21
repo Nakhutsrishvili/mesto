@@ -47,7 +47,7 @@ _enableButton(){
 
 _activateButton(){
   if (this._hasInvalidInput(this._inputList)) {
-   this._disableButton(this._formButton);
+   this._disableButton();
     } else {
       this._enableButton();
     }
@@ -66,7 +66,7 @@ enableValidation(){
    this._setEventListener();
 }
 
-resetErrorForm(){
+resetValidationState(){
    this._inputList.forEach(input => {
       const currentInputError = this._form.querySelector(`#${input.id}-error`);
       if (!input.validity.valid) {

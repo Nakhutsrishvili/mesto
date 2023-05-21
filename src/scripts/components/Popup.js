@@ -1,7 +1,7 @@
 export default class Popup {
   constructor(popupSelector){
     this._popup = document.querySelector(popupSelector);
-    this._closeButtons = this._popup.querySelector(".popup__close")
+    this._closeButton = this._popup.querySelector(".popup__close")
   }
 
   _handleEscClose = (evt) => {
@@ -11,7 +11,7 @@ export default class Popup {
   }
 
   _handleCloseButtons = () => {
-  this.close();
+    this.close();
 }
 
 _handleClickOverlay = (evt) => {
@@ -21,7 +21,7 @@ _handleClickOverlay = (evt) => {
 }
 
 setEventListeners(){
-  this._closeButtons.addEventListener('click', this._handleCloseButtons);
+  this._closeButton.addEventListener('click', this._handleCloseButtons);
   this._popup.addEventListener('click', this._handleClickOverlay)
 }
 
