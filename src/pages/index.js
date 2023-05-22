@@ -17,8 +17,6 @@ import closeIcon from '../images/CloseIcon.png';
 
 import '../pages/index.css';
 
-const popupAddCards = document.querySelector(".popup_add-cards");
-
 const loginProfileForm = document.forms.profileForm;
 const loginAddCardsForm = document.forms.addCardsForm;
 
@@ -35,14 +33,13 @@ const section = new Section ({
 
 section.addNewCards();
 
-const popupProfile = new PopupWithForm (popupProfileSelector, () =>{
-  userInfo.setUserInfo(popupProfile._getInputValues());
+const popupProfile = new PopupWithForm (popupProfileSelector, data =>{
+userInfo.setUserInfo(data);
 });
 
-const popupAddCard = new PopupWithForm(popupAddCardsSelector, () =>{
-  section.addItem(section.renderer(popupAddCard._getInputValues()));
+const popupAddCard = new PopupWithForm(popupAddCardsSelector, data =>{
+  section.addItem(section.renderer(data));
 });
-
 
 const formProfileValidator = new FormValidator(validationElement, loginProfileForm);
 formProfileValidator.enableValidation()
