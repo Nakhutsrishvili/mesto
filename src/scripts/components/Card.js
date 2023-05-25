@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(item, selectorTemplate, openImage){
+  constructor(item, selectorTemplate, openImage, openDeletePopupCard){
     this._item = item;
     this._selectorTemplate = selectorTemplate;
     this._openImage = openImage;
+    this._openDeletePopupCard = openDeletePopupCard;
   }
 
 _getTempalteClone(){
@@ -15,8 +16,7 @@ _buttonLike = () =>{
   }
 
 _buttonDelete = () => {
-  this._cloneElement.remove();
-  this._cloneElement = null; // зануляем, чтобы не хранилась в памяти карточка, которая удалена
+  this._openDeletePopupCard(this)
 }
 
 _buttonOpenImage = () => {
@@ -28,6 +28,11 @@ _setEventListeners(){
   this._elementLike.addEventListener('click', this._buttonLike);
   this._elementDelete.addEventListener('click', this._buttonDelete);
   this._elementImage.addEventListener ('click', this._buttonOpenImage);
+}
+
+removeCard(){
+  this._cloneElement.remove();
+  this._cloneElement = null;
 }
 
 createCard(){

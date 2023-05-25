@@ -28,10 +28,13 @@ const initialCards = [
 
 const editButtonElement = document.querySelector(".profile__edit-button");
 const profileAddButton = document.querySelector(".profile__add-button");
+const updateAvatarButton = document.querySelector(".profile__avatar-edit-button");
 const selectorTemplate = "#element";
 const popupProfileSelector =".popup_edit-profile";
-const popupAddCardsSelector = ".popup_add-cards"
+const popupAddCardsSelector = ".popup_add-cards";
+const popupDeleteCardSelector = ".popup_delete-card-confirm"
 const popupImageSelector = ".popup_image";
+const popupUpdateAvatarSelector = ".popup_avatar-update";
 const elementLists = ".elements";
 const configInfo = {
   profileNameElementSelector: ".profile__name",
@@ -49,10 +52,13 @@ export{
   initialCards,
   editButtonElement,
   profileAddButton,
+  updateAvatarButton,
   selectorTemplate,
   popupProfileSelector,
   popupAddCardsSelector,
   popupImageSelector,
+  popupDeleteCardSelector,
+  popupUpdateAvatarSelector,
   elementLists,
   configInfo,
   validationElement

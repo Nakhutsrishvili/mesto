@@ -16,7 +16,9 @@
     <main class="content">
 
       <div class="profile">
+       <button aria-label="Редактировать" type="button" class="profile__avatar-edit-button">
         <img src="<%=require('./images/image.jpg')%> " alt="Картинка" class="profile__avatar">
+        </button>
         <div class="profile__info">
           <div class="profile__container">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -71,6 +73,34 @@
           <button aria-label="Закрыть" type="button" class="popup__close"></button>
           <img src="#" alt="#" class="popup__popup-image">
           <h2 class="popup__image-caption"></h2>
+        </div>
+      </div>
+
+      <div class="popup popup_avatar-update">
+        <div class="popup__container">
+          <button aria-label="Закрыть" type="button" class="popup__close"></button>
+          <form novalidate class="form" id='form__mesto' autocomplete="off" name="updateAvatarForm" method="post">
+            <h2 class="form__title ">Обновить аватар</h2>
+            <input 
+            class="form__input" 
+            required 
+            id="avatar" 
+            name="avatar" 
+            placeholder="Ссылка на картинку"
+            type='url'>
+            <span id="avatar-error" class="form__error"></span>
+            <button aria-label="Создать" type="submit" class="form__submit-button">Сохранить</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_delete-card-confirm">
+        <div class="popup__container">
+          <button aria-label="Закрыть" type="button" class="popup__close"></button>
+          <form novalidate class="form" id='form__mesto' autocomplete="off" name="deleteCardConfirm" method="post">
+            <h2 class="form__title">Вы уверены?</h2>
+            <button aria-label="Создать" type="submit" class="form__submit-button">Да</button>
+          </form>
         </div>
       </div>
 
