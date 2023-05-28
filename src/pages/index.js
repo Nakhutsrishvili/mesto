@@ -5,8 +5,8 @@ import Section from "../scripts/components/Section.js";
 import UserInfo from "../scripts/components/UserInfo.js";
 import PopupWithForm from "../scripts/components/PopupWithForm.js";
 import PopupDeleteConfirm from "../scripts/components/PopupDeleteConfirm.js";
+import Api from "../scripts/components/Api.js";
 import {
-  initialCards,
   editButtonElement,
   profileAddButton,
   updateAvatarButton,
@@ -30,35 +30,79 @@ const loginUpdateAvatarForm = document.forms.updateAvatarForm;
 
 const userInfo = new UserInfo (configInfo);
 const popupImage = new PopupWithImage(popupImageSelector);
-const deletePopupCard = new PopupDeleteConfirm(popupDeleteCardSelector, (element) =>{
-element.removeCard();
+
+const deletePopupCard = new PopupDeleteConfirm(popupDeleteCardSelector, ({element, cardId}) =>{
+    api.deleteCards(cardId)
+    .then(() =>{
+    element.removeCard()
+    deletePopupCard.close()
+  })
+    .catch((error) => console.error(`Ошибка удаления карточки ${error}`))
+    .finally(() => popupProfile.resetButtonText())
 });
 
 function createNewCard (element){
-  const cards = new Card (element, selectorTemplate, popupImage.open, deletePopupCard.open);
+  const cards = new Card (element, selectorTemplate, popupImage.open, deletePopupCard.open, (elementLike, cardId) => {
+    if(elementLike.classList.contains("element__group-like_active")){
+      api.deleteLike(cardId)
+      .then(res =>{
+      cards.isLiked(res.likes)
+  })
+      .catch((error) => console.error(`Ошибка удаления лайка ${error}`))
+      .finally()
+    } else{
+      api.addLike(cardId)
+      .then(res =>{
+      cards.isLiked(res.likes)
+  })
+      .catch((error) => console.error(`Ошибка постановки лайка ${error}`))
+      .finally()
+}
+  });
   return cards.createCard();
 }
 
-const section = new Section ({
-  items:initialCards,
-  renderer: (element) => {
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
+  headers: {
+    authorization: '63581f11-ea1f-433e-8abb-0e1eb8f6c5b5',
+    'Content-Type': 'application/json'
+  }})
+
+const section = new Section ((element) => {
   section.addItem(createNewCard(element))
-}
 }, elementLists);
 
-section.addNewCards();
-
 const popupProfile = new PopupWithForm (popupProfileSelector, data =>{
-userInfo.setUserInfo(data);
-});
+  api.setUserInfo(data)
+  .then(res => {
+    userInfo.setUserInfo({username: res.name, about: res.about, avatar: res.avatar});
+    popupProfile.close();
+  })
+  .catch((error) => console.error(`Ошибка данных профиля ${error}`))
+  .finally(() => popupProfile.resetButtonText())
+  });
 
 const popupAddCard = new PopupWithForm(popupAddCardsSelector, data =>{
-  section.addItem(section.renderer(data));
+    Promise.all([api.getInfo(), api.addCard(data)]) 
+    .then(([dataUser, dataCard]) => {
+    dataCard.myid = dataUser._id;
+    section.addItem(createNewCard(dataCard))
+    popupAddCard.close();
+  })
+    .catch((error) => console.error(`Ошибка создания карточки ${error}`))
+    .finally(() => popupAddCard.resetButtonText())
 });
 
 const popupUpdateAvatar = new PopupWithForm(popupUpdateAvatarSelector, data =>{
-  document.querySelector(".profile__avatar").src = data.avatar;
-});
+    api.setUpdateAvatar(data)
+    .then(res => {
+      userInfo.setUserInfo({username: res.name, about: res.about, avatar: res.avatar})
+      popupUpdateAvatar.close();
+  })
+    .catch((error) => console.error(`Ошибка обновления аватара ${error}`))
+    .finally(() => popupUpdateAvatar.resetButtonText())
+  });
 
 const formProfileValidator = new FormValidator(validationElement, loginProfileForm);
 formProfileValidator.enableValidation()
@@ -90,3 +134,11 @@ updateAvatarButton.addEventListener("click", () => {
   formUpdateAvatarValidator.resetValidationState();
   popupUpdateAvatar.open();
 });
+
+Promise.all([api.getInfo(), api.getCards()])
+.then(([dataUser, dataCard]) =>{
+  dataCard.forEach(element => element.myid = dataUser._id);
+  userInfo.setUserInfo({ username: dataUser.name, about: dataUser.about, avatar: dataUser.avatar })
+  section.addNewCards(dataCard.reverse());
+})
+.catch((error) => console.error(`Ошибка при загрузке страницы ${error}`))

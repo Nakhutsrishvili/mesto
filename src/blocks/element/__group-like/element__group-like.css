@@ -1,17 +1,15 @@
 .element__group-like{
-  display: block;
-  width: 22px;
-  height: 19px;
-  box-sizing: border-box;
-  margin: 0;
   padding: 0;
+  height: 19px;
+  width: 22px;
+  box-sizing: border-box;
+  background-color: transparent;
   border: none;
+  color: var(--font-color-dark);
   background-image: url(../../../images/Group.png);
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  background-color: transparent;
-  transition: opacity;
 }
 
 .element__group-like:hover{

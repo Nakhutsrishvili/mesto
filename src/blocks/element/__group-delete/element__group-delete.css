@@ -1,20 +1,17 @@
 .element__group-delete{
-  display: block;
+  position: absolute;
+  top: 20px;
+  right: 20px;
   width: 18px;
-  height: 19.3px;
-  box-sizing: border-box;
-  margin: 0;
-  margin-left: 244px;
-  margin-top: 20px;
+  height: 19px;
   padding: 0;
   border: none;
-  background-image: url(../../../images/Trash.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
   background-color: transparent;
-  transition: opacity;
-  position: absolute;
+  background-image: url(../../../images/Trash.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
 }
 
 .element__group-delete:hover{

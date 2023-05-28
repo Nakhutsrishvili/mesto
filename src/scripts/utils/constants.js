@@ -1,31 +1,3 @@
-//Загружаем массив с карточками, у которого внутри объекты с свойствами.
-const initialCards = [
-  {
-    title: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    title: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    title: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    title: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    title: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    title: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
 const editButtonElement = document.querySelector(".profile__edit-button");
 const profileAddButton = document.querySelector(".profile__add-button");
 const updateAvatarButton = document.querySelector(".profile__avatar-edit-button");
@@ -38,7 +10,8 @@ const popupUpdateAvatarSelector = ".popup_avatar-update";
 const elementLists = ".elements";
 const configInfo = {
   profileNameElementSelector: ".profile__name",
-  profileJobElementSelector: ".profile__about"
+  profileJobElementSelector: ".profile__about",
+  profileAvatarElementSelector:".profile__avatar"
 }
 const validationElement = {
   inputSelector: ".form__input",
@@ -49,7 +22,6 @@ const validationElement = {
 };
 
 export{
-  initialCards,
   editButtonElement,
   profileAddButton,
   updateAvatarButton,

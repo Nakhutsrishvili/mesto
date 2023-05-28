@@ -2,14 +2,16 @@ export default class UserInfo {
   constructor(configInfo){
     this._nameElement = document.querySelector(configInfo.profileNameElementSelector);
     this._jobElement = document.querySelector(configInfo.profileJobElementSelector);
+    this._avatarElement = document.querySelector(configInfo.profileAvatarElementSelector);
   }
 
   getUserInfo(){
-    return{profileFormInputName:this._nameElement.textContent, profileFormInputJob:this._jobElement.textContent}
+    return{username:this._nameElement.textContent, about:this._jobElement.textContent}
   }
 
-  setUserInfo(userData){
-    this._nameElement.textContent = userData.profileFormInputName;
-    this._jobElement.textContent = userData.profileFormInputJob;
+  setUserInfo({ avatar, username, about }){
+    this._avatarElement.src = avatar;
+    this._nameElement.textContent = username;
+    this._jobElement.textContent = about;
   }
 }
