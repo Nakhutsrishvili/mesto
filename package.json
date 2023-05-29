@@ -23,9 +23,7 @@
     "postcss-loader": "^7.3.0",
     "webpack": "^5.83.1",
     "webpack-cli": "^5.1.1",
-    "webpack-dev-server": "^4.15.0",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "webpack-dev-server": "^4.15.0"
   },
   "dependencies": {
     "core-js": "^3.30.2"

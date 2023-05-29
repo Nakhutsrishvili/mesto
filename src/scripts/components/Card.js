@@ -37,7 +37,7 @@ _setEventListeners(){
 }
 
 _changeDeleteButton(){
-this._myId === this._ownerId ? this._elementDelete.style.display = 'block' : this._elementDelete.style.display ='none';
+this._myId === this._ownerId ? this._elementDelete.classList.add("element__group-delete") : this._elementDelete.classList.add("element__group-delete_inactive");
 }
 
 _chekPresenceLike(){

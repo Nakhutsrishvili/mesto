@@ -38,7 +38,7 @@ const deletePopupCard = new PopupDeleteConfirm(popupDeleteCardSelector, ({elemen
     deletePopupCard.close()
   })
     .catch((error) => console.error(`Ошибка удаления карточки ${error}`))
-    .finally(() => popupProfile.resetButtonText())
+    .finally(() => deletePopupCard.resetButtonText())
 });
 
 function createNewCard (element){
@@ -84,9 +84,9 @@ const popupProfile = new PopupWithForm (popupProfileSelector, data =>{
   });
 
 const popupAddCard = new PopupWithForm(popupAddCardsSelector, data =>{
-    Promise.all([api.getInfo(), api.addCard(data)]) 
-    .then(([dataUser, dataCard]) => {
-    dataCard.myid = dataUser._id;
+    api.addCard(data)
+    .then(dataCard => {
+    dataCard.myid = userInfo.getUserId()
     section.addItem(createNewCard(dataCard))
     popupAddCard.close();
   })
@@ -139,6 +139,7 @@ Promise.all([api.getInfo(), api.getCards()])
 .then(([dataUser, dataCard]) =>{
   dataCard.forEach(element => element.myid = dataUser._id);
   userInfo.setUserInfo({ username: dataUser.name, about: dataUser.about, avatar: dataUser.avatar })
+  userInfo.setUserId(dataUser._id)
   section.addNewCards(dataCard.reverse());
 })
 .catch((error) => console.error(`Ошибка при загрузке страницы ${error}`))

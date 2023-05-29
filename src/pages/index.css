@@ -19,6 +19,7 @@
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/element/element.css);
 @import url(../blocks/element/__group-delete/element__group-delete.css);
+@import url(../blocks/element/__group-delete/_inactive/element__group-delete_inactive.css);
 @import url(../blocks/element/__group/element__group.css);
 @import url(../blocks/element/__group-like/element__group-like.css);
 @import url(../blocks/element/__group-like/_active/element__group-like_active.css);

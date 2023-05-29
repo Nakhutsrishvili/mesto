@@ -11,7 +11,7 @@ export default class PopupDeleteConfirm extends Popup{
 
     setEventListeners(){
         super.setEventListeners();
-        this._form.addEventListener("submit", evt => {
+        this._popupForm.addEventListener("submit", evt => {
         evt.preventDefault();
         this._submitButtons.textContent = `Удаление...`
         this._submitFunction({element:this._element, cardId:this._cardId});
